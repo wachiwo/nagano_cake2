@@ -11,10 +11,12 @@ class Admin::GenresController < ApplicationController
   end
 
   def index
-     #@genres = Genre.all  
+    @genre = Genre.new
+     #@genres = Genre.all
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def update
@@ -23,6 +25,6 @@ class Admin::GenresController < ApplicationController
   private # ストロングパラメータ
 
   def genre_params
-    params.require(:genre).permit(:title)
+    params.require(:genre).permit(:name)
   end
 end
