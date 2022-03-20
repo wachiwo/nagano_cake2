@@ -16,6 +16,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])  
   end
 
   def edit
@@ -27,10 +28,10 @@ class Admin::ItemsController < ApplicationController
     item.update(item_params)
     redirect_to admin_items_path(item.id)
   end
-  
+
    private
   # ストロングパラメータ
-  def list_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
+  def item_params
+    params.permit(:genre_id, :name, :introduction, :price, :is_active, :image)#require(:item)
   end
 end

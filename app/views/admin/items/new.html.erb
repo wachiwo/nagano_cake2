@@ -2,7 +2,7 @@
 
 
 
-<%= form_with model: @Item, url: new_admin_item_path do |f| %>
+<%= form_with model: @Item, url: admin_items_path do |f| %>
   <h4>商品画像</h4>
   <%= f.file_field :image, accept: "image/*" %>
 

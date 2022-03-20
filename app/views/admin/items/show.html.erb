@@ -1,9 +1,22 @@
 <h1>商品詳細</h1>
- <%# if item.image.attached? %>
-    <%#= image_tag item.image, size: "200x200" %>
-  <%# else %>
-    <%#= image_tag 'no_image', size: "200x200" %>
-  <%# end %>
+ <% if item.image.attached? %>
+    <%= image_tag item.image, size: "400x400" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "400x400" %>
+  <% end %>
 
+<h2>商品名</h2>
+<p><%= @item.name %></p>
 
+<h2>商品説明</h2>
+<p><%= @item.introdction %></p>
+
+<h2>ジャンル</h2>
+<p><%= @item.genre %></p>
+
+<h2>税込価格</h2>
+<p><%= @item.price %></p>
+
+<h2>販売ステータス</h2>
+<p><%= @item.is_active %></p>
 
