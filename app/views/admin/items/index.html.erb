@@ -4,6 +4,6 @@
   <span><%= item.id %></span>
   <span><%= item.name %></span>
   <span><%= item.price %></span>
-  <span>ジャンル名<%#= link_to item.genre, book_path(item.id) %></span>
+  <span><%= item.genre.name %></span></span>
   <span><%= item.is_active %></span>
   <% end %>
