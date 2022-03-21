@@ -1,0 +1,32 @@
+<h2>マイページ</h2>
+
+<h3>登録情報</h3>　<%= link_to '編集する', edit_admin_registration_path %>
+
+<table>
+  <tr>
+    <th>氏名</th><td>山田 花子</td>
+  </tr>
+  
+  <tr>
+    <th>カナ</th><td>ヤマダ ハナコ</td>
+  </tr>
+
+  <tr>
+    <th>郵便番号</th><td>0000000</td>
+  </tr>
+
+   <tr>
+    <th>住所</th><td>東京都東京市東京区１丁目</td>
+  </tr>
+
+   <tr>
+    <th>電話番号</th><td>12345678909</td>
+  </tr>
+
+   <tr>
+    <th>メールアドレス</th><td>hoge@hogehoge</td>
+  </tr>
+</table>
+
+<p>配送先</p><%= link_to '一覧を見る', new_customer_registration_path %>
+<p>注文履歴</p><%= link_to '一覧を見る', new_customer_registration_path %>
