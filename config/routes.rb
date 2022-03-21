@@ -1,21 +1,19 @@
 Rails.application.routes.draw do
   
   namespace :public do
-   resources :customers, only: [:show, :edit, :unsubscribe]
+   resources :customers, only: [:show, :edit, :update]
+   patch '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   end
   namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
+    resources:homes, only: [:top, :about]
+    end
   
   namespace :admin do
     get 'orders/show'
   end
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
+    resources:customers, only: [:index, :show, :edit]
+    end
   namespace :admin do
     resources :items, only: [:new, :index, :create, :edit, :show, :update]
   end
