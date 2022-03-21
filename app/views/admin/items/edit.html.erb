@@ -3,16 +3,16 @@
   <%= form_with model: @item, url: admin_item_path do |f| %>
     <h2>商品画像</h2>
     <%= f.file_field :name %>
-   
+
 
     <h2>商品名</h2>
     <%= f.text_area :name %>
-    
+
     <h2>商品説明</h2>
     <%= f.text_area :introduction %>
 
     <h2>ジャンル</h2>
-    
+
 
     <h2>税抜価格</h2>
     <%= f.text_field :price %>

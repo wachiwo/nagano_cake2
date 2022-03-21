@@ -1,2 +1,15 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<p>ようこそ、ながのCAKEへ!</p>
+<p>このさいとは、ケーキ販売のECサイトになります。</p>
+<p>会員でない方も商品の閲覧はできますが、</p>
+<p>刻乳には会員登録が必要になります。</p>
+
+
+<h1>新着商品</h1>
+
+
+
+
+<% @items.each do |item| %>
+<span><%= item.name %></span>
+<span><%= item.price %></span>
+<% end %>
