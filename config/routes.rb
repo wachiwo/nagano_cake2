@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  namespace :public do
+    get 'items/index'
+    get 'items/show'
+  end
 
   namespace :public do
     get 'addresses/index'
@@ -11,14 +16,15 @@ Rails.application.routes.draw do
   namespace :public do
     get 'homes/top'
     get 'homes/about'
-    end
+  end
 
   namespace :admin do
     get 'orders/show'
   end
   namespace :admin do
     resources:customers, only: [:index, :show, :edit]
-    end
+  end
+  
   namespace :admin do
     resources :items, only: [:new, :index, :create, :edit, :show, :update]
   end
