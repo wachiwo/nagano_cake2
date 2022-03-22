@@ -1,7 +1,7 @@
 <h2>マイページ</h2>
 
-<h3>登録情報</h3>　<%= link_to '編集する', edit_admin_registration_path %>
-
+<h3>登録情報</h3>　<%= link_to '編集する', edit_public_customer_path %>
+<% @customer.each do |customer| %>
 <table>
   <tr>
     <th>氏名</th><td>山田 花子</td>
@@ -27,6 +27,6 @@
     <th>メールアドレス</th><td>hoge@hogehoge</td>
   </tr>
 </table>
-
+<% end %>
 <p>配送先</p><%= link_to '一覧を見る', new_customer_registration_path %>
 <p>注文履歴</p><%= link_to '一覧を見る', new_customer_registration_path %>

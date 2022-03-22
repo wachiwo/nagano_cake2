@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   namespace :public do
+    get 'addresses/index'
+    get 'addresses/edit'
+  end
+  namespace :public do
    resources :customers, only: [:show, :edit, :update]
    patch '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   end
