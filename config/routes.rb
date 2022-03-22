@@ -1,17 +1,14 @@
 Rails.application.routes.draw do
-  
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
+
   namespace :public do
    resources :customers, only: [:show, :edit, :update]
    patch '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   end
   namespace :public do
-    resources:homes, only: [:top, :about]
+    get 'homes/top'
+    get 'homes/about'
     end
-  
+
   namespace :admin do
     get 'orders/show'
   end
@@ -21,15 +18,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :items, only: [:new, :index, :create, :edit, :show, :update]
   end
-  
+
   namespace :admin do
     resources :genres, only: [:new, :index, :create, :edit, :update]
   end
-  
+
   namespace :admin do
     resources :homes, only: [:top]
   end
-  
+
   devise_for :customers, controllers: {
     sessions: 'customers/sessions',
     passwords: 'customers/passwords',
