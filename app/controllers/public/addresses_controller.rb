@@ -18,5 +18,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
+  end
+  
+  private
+  def list_params
+    params.require(:address).permit(:name, :postal_code, :address)
   end
 end
