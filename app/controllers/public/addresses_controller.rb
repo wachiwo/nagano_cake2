@@ -6,9 +6,9 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-   
+
     address = Address.new(address_params)
-    address.customer_id = 1 #カレントユーザに変更する
+    address.customer_id = current_customer.id #カレントユーザに変更する
     address.save!
     redirect_to public_addresses_path
   end
@@ -22,13 +22,13 @@ class Public::AddressesController < ApplicationController
   def edit
     @address = Address.find(params[:id])
   end
-  
+
   def update
     address = Address.find(params[:id])
     address.update(address_params)
     redirect_to public_addresses_path
   end
-  
+
   def destroy
     address = Address.find(params[:id])  # データ（レコード）を1件取得
     address.destroy  # データ（レコード）を削除
