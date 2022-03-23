@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
+
   namespace :public do
-    
+
     resources:items, only:[:index, :show]
   end
 
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources:customers, only: [:index, :show, :edit]
   end
-  
+
   namespace :admin do
     resources :items, only: [:new, :index, :create, :edit, :show, :update]
   end

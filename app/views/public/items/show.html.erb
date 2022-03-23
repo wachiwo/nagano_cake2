@@ -1,2 +1,24 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<h1>商品詳細</h1>
+ <%# if @item.image.attached? %>
+    <%#= image_tag @item.image, size: "200x200" %>
+  <%# else %>
+    <%#= image_tag 'no_image', size: "200x200" %>
+  <%# end %>
+
+<h2>商品名</h2>
+<p><%= @item.name %></p>
+
+<h2>商品説明</h2>
+<p><%= @item.introduction %></p>
+
+<h2>ジャンル</h2>
+<p><%= @item.genre.name %></p>
+
+<h2>税込価格</h2>
+<p><%= @item.add_tax_price.to_s(:delimited) %> 円</p>
+
+<h2>販売ステータス</h2>
+<p><%= @item.is_active %></p>
+<%#
+
+https://nllllll.com/ruby-on-rails/%E3%80%90rails%E3%80%91%E6%B6%88%E8%B2%BB%E7%A8%8E%E3%81%AE%E8%A8%88%E7%AE%97/ %>
