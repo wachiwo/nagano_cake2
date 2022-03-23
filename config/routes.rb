@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
   
   namespace :public do
-    get 'items/index'
-    get 'items/show'
+    
+    resources:items, only:[:index, :show]
   end
 
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
+    resources:addresses, only:[:new, :index, :edit, :create, :update, :destroy]
   end
   namespace :public do
    resources :customers, only: [:show, :edit, :update]
