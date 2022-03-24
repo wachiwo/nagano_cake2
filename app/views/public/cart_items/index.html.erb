@@ -9,3 +9,10 @@
 <p>小計</p>
 
 <p>合計金額</p>
+ <% @items.each do |item| %>
+ 
+  <span><%= item.name %></span>
+  <p><%#= @item.add_tax_price.to_s(:delimited) %> 円</p>
+ <p>数量</p>
+ <p>小計</p>
+  <% end %>
