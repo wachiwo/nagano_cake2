@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_135408) do
+ActiveRecord::Schema.define(version: 2022_03_26_121505) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -100,8 +100,23 @@ ActiveRecord::Schema.define(version: 2022_03_24_135408) do
   end
 
   create_table "public_cart_items", force: :cascade do |t|
+    t.string "address", null: false
+    t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "public_orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "postal_code", null: false
+    t.string "address", null: false
+    t.string "name", null: false
+    t.integer "shipping_cost", null: false
+    t.integer "payment_method", null: false
+    t.integer "status", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_public_orders_on_customer_id"
   end
 
   create_table "publics", force: :cascade do |t|
@@ -120,4 +135,5 @@ ActiveRecord::Schema.define(version: 2022_03_24_135408) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "customers"
   add_foreign_key "items", "genres"
+  add_foreign_key "public_orders", "customers"
 end
