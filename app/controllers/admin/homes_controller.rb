@@ -1,8 +1,8 @@
 class Admin::HomesController < ApplicationController
   def top
-    @items = Item.all
+    @customers = Customer.all
   end
-  
+
   def index
     @items = Item.all
   end

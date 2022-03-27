@@ -1,1 +1,17 @@
 <h1>注文履歴一覧</h1>
+<% @customers.each do |customer| %>
+
+  <p>購入日時</p>
+  <span></span>
+
+    <p>購入者</p>
+  <%= customer.last_name %><%= customer.first_name %> <%#ここにリンクを付ける%>
+
+    <p>注文個数</p>
+  <span></span>
+
+    <p>注文ステータス</p>
+  <span></span>
+
+  <% end %>
+

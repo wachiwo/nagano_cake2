@@ -19,8 +19,7 @@ Rails.application.routes.draw do
     resources:addresses, only:[:new, :index, :edit, :create, :update, :destroy]
   end
   namespace :public do
-   resources :customers, only: [:show, :edit, :update]
-   patch '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+   resources :customers, only: [:show, :edit]
   end
   namespace :public do
     get 'homes/top'
@@ -31,7 +30,7 @@ Rails.application.routes.draw do
     get 'orders/show'
   end
   namespace :admin do
-    resources:customers, only: [:index, :show, :edit]
+    resources:customers, only: [:index, :show, :edit, :update]
   end
 
   namespace :admin do
@@ -43,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :homes, only: [:top]
+     get 'homes/top'
   end
 
   devise_for :customers, controllers: {
