@@ -4,7 +4,8 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = 1
+   # @item = Item.find(params[:id])
   end
 
     private

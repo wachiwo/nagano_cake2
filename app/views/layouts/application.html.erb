@@ -1,30 +1,115 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>NaganoCake2</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+  <html>
+    <head>
+      <title>NaganoCake2</title>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  </head>
+    </head>
 
-  <body>
-    <header>
-    <% if customer_signed_in? %>
+    <body>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+         <!--adminログイン時のヘッダー-->
+              <% if admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to "商品一覧", admin_items_path do %> <%#アイコンを付けるかもしれないからdoを付けておく%>
+                  <% end %>
+                </li>
 
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_admin_registration_path %>
-      </li>
-    <% end %>
-    <%= yield %>
-    </header>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_customers_path do %>
+                  <% end %>
+                </li>
 
-  </body>
-</html>
+                <li class="nav-item">
+                  <%= link_to "注文履歴一覧", admin_homes_top_path  do %>
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "ジャンル一覧", admin_genres_path do%>
+                  <% end %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete do %>
+                  <% end %>
+                </li>
+
+                <% elsif customer_signed_in? %><!--customersログイン時のヘッダー-->
+                  <li class="nav-item">
+                  ようこそ <%= link_to customer_session_path do %>
+                    <strong><%= current_customer.last_name %></strong>
+                  <% end %>
+                   さん
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to public_homes_top_path do %>
+                      <i class="fas fa-user-circle">マイページ</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to  public_items_path do %>
+                      <i class="fas fa-cookie-bite">商品一覧</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to public_cart_items_index_path do %>
+                      <i class="fas fa-shopping-cart">カート</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to destroy_customer_session_path, method: :delete do %>
+                      <i class="fas fa-sign-out-alt">ログアウト</i>
+                    <% end %>
+                  </li>
+
+                <% else %>
+                    <!--ログイン前時のヘッダー-->
+                  <li class="nav-item">
+                    <%= link_to public_homes_about_path do %>
+                      <i class="fas fa-store-alt">About</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to public_items_path do %>
+                      <i class="fas fa-cookie-bite">商品一覧</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to new_customer_registration_path do %>
+                      <i class="fas fa-user-plus">新規登録</i>
+                    <% end %>
+                  </li>
+
+                  <li class="nav-item">
+                    <%= link_to new_customer_session_path do%>
+                      <i class="fas fa-user">ログイン</i>
+                    <% end %>
+                  </li>
+                <% end %>
+      </header>
+      <main>
+        <%= yield %>
+      </main>
+
+    </body>
+  </html>
