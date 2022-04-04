@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @items_all = Item.all
+    @items = Item.page(params[:page]).per(8)
   end
 
   def show
@@ -9,7 +10,7 @@ class Public::ItemsController < ApplicationController
   end
 
     private
-  def list_params
+  def item_params
     params.require(:item).permit(:name, :price, :image)
   end
 end
