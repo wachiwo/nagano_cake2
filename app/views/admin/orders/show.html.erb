@@ -1,16 +1,67 @@
-<h1>注文履歴詳細</h1>
-<p>購入者</p>
-<p>注文日</p>
-<p>配送先</p>
-<p>支払方法</p>
-<p>注文ステータス</p>
-
-<p>商品名</p>
-<p>単価(税込)</p>
-<p>数量</p>
-<p>小計</p>
-<p>製作ステータス</p>
-
-<p>商品合計</p>
-<p>送料</p>
-<p>請求金額合計</p>
+  <div class="container">
+    <div class="col-sm-10"><h2>注文履歴詳細</h2></div>
+    <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+      <table>
+        <tr>
+          <th>購入者</th>
+          <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id) %></td>
+        </tr>
+        
+        <tr>
+          <th>注文日</th>
+          <td>注文日を入れる</td>
+        </tr>
+  
+        <tr>
+          <th>配送先</th>
+          <td>〒<%= @order.postal_code %> <%= @order.address %> <%= @order.name %></td>
+        </tr>
+  
+        <tr>
+          <tr>支払方法</tr>
+          <td><%= @order.payment_method %><</td><%#enumで管理, {0: クレジットカード, 1: 銀行振込}%>
+        </tr>
+  
+        <tr>
+          <tr>注文ステータス</tr>
+          <td><%= f.label :status %></td><%#enumで管理, {0: 入金待ち, 1:入金確認, 2: 製作中, 3: 発送準備中, 4: 発送済み}%>
+        </tr>
+        <%= f.submit "更新" %>
+      </table>
+    <% end %>
+    <div class="row">
+        <div class="col-sm-8">
+          <table class="table table-bordered">
+            <thead>
+              <th>商品名</th>
+              <th>単価(税込み)</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th>製作ステータス</th>
+            <tbody>
+              <% @order.order_details.each do |order_detail| %>
+                <td><%= order_detail.item.name %> </td>
+                <td><%= change_price_excluding_tax(order_detail.price_including_tax) %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= change_price_excluding_tax(order_detail.price_including_tax) * order_detail.amount %>円</td>
+                <td>製作ステータスを設定する
+                  
+                <%= f.submit "更新" %>
+              <% end %>
+                </td>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <table>
+          <tr>商品合計</tr>
+            <td>商品の合計金額円</td>
+          <tr>送料</tr>
+            <td>送料円</td>
+          <tr>請求金額合計</tr>
+            <td>合計金額と送料を合計円</td>
+        </table>
+      </div>
+    </div>
+  </div>

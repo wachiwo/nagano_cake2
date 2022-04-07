@@ -1,17 +1,28 @@
-<h1>注文履歴一覧</h1>
-<% @customers.each do |customer| %>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 px-sm-0 mx-auto">
+      <h1>注文履歴一覧</h1>
 
-  <p>購入日時</p>
-  <span></span>
+      <table>
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @customers.each do |customer| %>
 
-    <p>購入者</p>
-  <%= customer.last_name %><%= customer.first_name %> <%#ここにリンクを付ける%>
-
-    <p>注文個数</p>
-  <span></span>
-
-    <p>注文ステータス</p>
-  <span></span>
-
-  <% end %>
-
+        <tr>
+          <td>購入日時をいれる</td>
+          <td><%= customer.last_name + customer.first_name %></td>
+          <td>注文個数を入れる</td> <%#cart_item.amount %>
+          <td>注文ステータスをいれる</td><%#order.status%>
+          </tr>
+        <% end %>
+        </tbody>
+          </table>
+    </div>
+  </div>

@@ -3,7 +3,5 @@ class Admin::HomesController < ApplicationController
     @customers = Customer.all
   end
 
-  def index
-    @items = Item.all
-  end
+  
 end
