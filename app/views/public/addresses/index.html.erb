@@ -1,27 +1,49 @@
-  <h1>配送先登録/一覧</h1>
+  <div class="container mt-5 mb-5">
+    <div class="row shipping-new">
+      <div class="col-sm-10 px-sm-0 offset-sm-1">
+        <h1>配送先登録/一覧</h1>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-sm-10 px-sm-0 mx-auto">
+        <%= form_with model: @address, url: public_addresses_path do |f| %>
+          <tabele>
+            <tr>
+              <th><%= f.label :"郵便番号(ハイフンなし)" %></th>
+              <td><%= f.text_field :postal_code %></td>
+            </tr>
 
-  <%= form_with model: @address, url: public_addresses_path do |f| %>
+            <tr><%= f.label :"住所" %></tr>
+            <td><%= f.text_field :address,  placeholder:"東京都渋谷区代々木神園町0-0" %></td>
 
-    <h4>郵便番号（ハイフンなし）</h4>
-      <%= f.text_field :postal_code %>
+            <tr><%= f.label :"宛名" %>
+              <td><%= f.text_field :name, placeholder:"令和道子"%></td>
+              <td><%= f.submit '新規登録' %></td>
+            </tr>
+          </tabele>
+        <% end %>
+      </div>
+    </div>
 
-    <h4>住所</h4>
-    <%= f.text_field :address %>
-
-    <h4>宛名</h4>
-  	  <%= f.text_field :name %>
-  	  <%= f.submit '新規登録' %>
-  <% end %>
-
-  <% @addresses.each do |address| %>
-    <p>郵便番号</p>
-    <span><%= address.postal_code %></span>
-    <p>住所</p>
-    <span><%= address.address %></span>
-    <p>宛名</p>
-    <span><%= address.name %></span>
-    <p><%= link_to '編集する', edit_public_address_path(address.id) %></p>
-    <%= link_to "削除する", public_address_path(current_customer.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-    
-  <% end %>
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th clospan="2"></th>
+      </tr>
+    </thead>
+      <table>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <td><%= address.postal_code %></td>
+          <td><%= address.address %></td>
+          <td><%= address.name %></td>
+          <td><%= link_to '編集する', edit_public_address_path(address.id) %>
+          <%= link_to "削除する", public_address_path(@customer.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          </td>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

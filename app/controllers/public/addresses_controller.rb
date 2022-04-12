@@ -7,16 +7,23 @@ class Public::AddressesController < ApplicationController
 
   def create
 
-    address = Address.new(address_params)
-    address.customer_id = current_customer.id #カレントユーザに変更する
-    address.save!
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id #カレントユーザに変更する
+    if @customer_address.save!
     redirect_to public_addresses_path
+    
+    else
+      @customer = current_customer
+      @address = @customer.address
+      redirect_back(fallback_location: public_addresses_path)
+    end
   end
-
 
   def index
     @address = Address.new
     @addresses = Address.all
+    @customer = current_customer
+   
   end
 
   def edit
